@@ -1,1 +1,1 @@
-This repo is used to record useful knowledge for database
+Record useful Tips for programing
