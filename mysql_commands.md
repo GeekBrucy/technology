@@ -36,3 +36,14 @@ FROM > ON > JOIN > WHERE > GROUP BY > HAVING > SELECT [DISTINCT]> ORDER BY > LIM
 index is a kind of data structure, which include b-tree, hash tree, etc.
 
 MySQL is using b-tree by default
+
+# MySQL / MariaDB Error: ERROR 1130 (00000): Host ''xxx.xx.xxx.xxx'' is not allowed to connect to this MySQL server
+
+It is possibly a security precaution. A new admin account could be created
+
+```sql
+CREATE USER 'monty'@'localhost' IDENTIFIED BY 'some_pass';
+GRANT ALL PRIVILEGES ON *.* TO 'monty'@'localhost';
+CREATE USER 'monty'@'%' IDENTIFIED BY 'some_pass';
+GRANT ALL PRIVILEGES ON *.* TO 'monty'@'%';
+```
