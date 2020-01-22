@@ -47,3 +47,19 @@ GRANT ALL PRIVILEGES ON *.* TO 'monty'@'localhost';
 CREATE USER 'monty'@'%' IDENTIFIED BY 'some_pass';
 GRANT ALL PRIVILEGES ON *.* TO 'monty'@'%';
 ```
+# MariaDB DATEDIFF
+
+```sql
+SELECT DATEDIFF('2014-05-19', '2014-05-10');
+```
+Result: 9
+
+```sql
+SELECT DATEDIFF('2014-05-19 11:41:14', '2014-03-24');
+```
+Result: 56
+
+```sql
+SELECT DATEDIFF('2013-12-31', '2014-05-28');
+```
+Result: -148
