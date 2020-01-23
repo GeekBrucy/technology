@@ -63,3 +63,31 @@ Result: 56
 SELECT DATEDIFF('2013-12-31', '2014-05-28');
 ```
 Result: -148
+
+# Search by column name
+
+```sql
+select distinct tab.table_schema as database_name,
+    tab.table_name
+from information_schema.tables as tab
+    inner join information_schema.columns as col
+        on col.table_schema = tab.table_schema
+            and col.table_name = tab.table_name
+            and column_name LIKE '%COLUMN_NAME%'
+where tab.table_type = 'BASE TABLE'
+order by tab.table_schema,
+    tab.table_name;
+```
+
+# Search by table name
+
+```sql
+select table_schema as database_name,
+    table_name
+from information_schema.tables
+where table_type = 'BASE TABLE'
+#     and table_name = 'your table name'
+    and table_name like '%your table name%'
+    and table_name not like '%_version%'
+order by table_name;
+```
