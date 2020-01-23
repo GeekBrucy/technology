@@ -76,3 +76,11 @@ or
 ```
 git stash apply n
 ```
+
+# If a remote branch is just checked out to local and it says your branch is x commits ahead
+
+## solution 1
+
+```
+git fetch -p
+```
