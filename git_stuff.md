@@ -60,3 +60,19 @@ git log | grep <commit_id>
 ```
 git branch --contains $COMMIT_ID
 ```
+
+# List stash and apply stash
+
+```
+git stash list #list all stashes
+```
+
+```
+git stash apply stash@{n}
+```
+
+or
+
+```
+git stash apply n
+```
