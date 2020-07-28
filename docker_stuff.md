@@ -84,3 +84,25 @@ docker run -d -p LOCAL_PORT:CONTAINER_PORT --name CONTAINER_NAME IMAGE_ID|IMAGE_
 ### -d: run the container at the back-end
 ### -p: map ports
 ### --name: assign name to the container
+
+## Stop Container
+### Stop specified container
+```
+docker stop CONTAINER_ID
+```
+or
+### Stop all containers
+```
+docker stop $(docker ps -qa)
+```
+
+## Remove Contaienr
+### Remove specified container
+```
+docker rm CONTAINER_ID
+```
+or
+### Remove all containers
+```
+docker rm $(docker ps -qa)
+```
