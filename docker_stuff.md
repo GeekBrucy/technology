@@ -28,6 +28,10 @@ pick the docker needs to be removed, then delete
 ```
 docker image rm [image_name]
 ```
+or
+```
+docker rmi IMAGE_ID
+```
 
 # Docker delete container
 
@@ -45,3 +49,38 @@ or
 ```
 docker container rm [container_id]
 ```
+
+# Pull image to local
+```
+docker pull IMAGE_NAME[:tag]
+```
+
+# Import/Export Images
+
+## Export
+```
+docker save -o EXPORT_DIR IMAGE_ID
+```
+
+## Import
+```
+docker load -i IMAGE_FILE
+```
+
+# change docker tag name
+```
+docker tag IMAGE_ID TAG_NAME:VERSION
+```
+
+# Containers
+## Run Container (Easy)
+```
+docker run IMAGE_ID|IMAGE_NAME[:tag]
+```
+## Run Container (Verbose)
+```
+docker run -d -p LOCAL_PORT:CONTAINER_PORT --name CONTAINER_NAME IMAGE_ID|IMAGE_NAME[:tag]
+```
+### -d: run the container at the back-end
+### -p: map ports
+### --name: assign name to the container
