@@ -116,3 +116,33 @@ docker cp LOCAL_DIR/FILE_NAME CONTAINER_ID|CONTAINER_NAME:CONTAINER_TARGET_DIR
 ```
 docker cp CONTAINER_ID|CONTAINER_NAME:CONTAINER_TARGET_DIR LOCAL_DIR/FILE_NAME
 ```
+
+# docker volume
+## create volume
+```sh
+# after creating the volume, it will be saved in a directory in the local machine
+# linux: /var/lib/docker/volumes/VOLUME_NAME/_data
+docker volume create VOLUME_NAME
+```
+## check volumn details
+```
+docker volume inspect VOLUME_NAME
+```
+
+## check all volumes
+```
+docker volume ls
+```
+
+## remove volume
+```
+docker volume rm VOLUME_NAME
+```
+
+## use volume 
+```sh
+# when mapping the volume, if it does not exist, docker will create it automatically
+docker run -v VOLUME_NAME:VOLUME_CONTAINER_DIR IMAGE_ID
+# nominate a dir for volume
+docker run -v DIR:VOLUME_CONTAINER_DIR IMAGE_ID
+```
