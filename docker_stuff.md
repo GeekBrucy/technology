@@ -106,3 +106,13 @@ or
 ```
 docker rm $(docker ps -qa)
 ```
+
+# docker copy files
+## From local to container
+```
+docker cp LOCAL_DIR/FILE_NAME CONTAINER_ID|CONTAINER_NAME:CONTAINER_TARGET_DIR
+```
+## From container to local
+```
+docker cp CONTAINER_ID|CONTAINER_NAME:CONTAINER_TARGET_DIR LOCAL_DIR/FILE_NAME
+```
