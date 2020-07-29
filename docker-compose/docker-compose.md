@@ -32,3 +32,23 @@ services:
       - "F:/MyProj/learn_docker/docker_mysql_tomcat/webapp_data:/usr/local/tomcat/webapps"
       - "F:/MyProj/learn_docker/docker_mysql_tomcat/webapp_logs:/usr/local/tomcat/logs"
 ```
+
+# docker-compose commandss
+> docker-compose command will seek docker-compose.yml file in current directory
+
+```sh
+# 1 start up containers based on docker-compose.yml
+docker-compose up -d
+
+# 2 Stop and remove containers
+docker-compose down
+
+# 3 Start/Close/restart existing containers created by docker-compose
+docker-compose start|stop|restart
+
+# 4 list containers maintained by docker-compose
+docker-compose ps
+
+# 5 check log
+docker-compose logs -f
+```
