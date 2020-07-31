@@ -52,3 +52,29 @@ docker-compose ps
 # 5 check log
 docker-compose logs -f
 ```
+
+# docker-compose with Dockerfile
+> use docker-compose.yml and Dockerfile to generate customised image and start the image
+
+```yml
+#yml file
+version: '3.4'
+services:
+  webapp:
+    restart: always
+    build:
+      context: ../                # dockerfile directory
+      dockerfile: Dockerfile      # dockerfile file name
+    image: webapp: 1.0.0
+    container_name: webapp
+    ports:
+      - 1234:8080
+    environment:
+      TZ: Australia/Canberra
+```
+
+```sh
+# Dockerfile
+FROM some_docker_image:tag
+COPY local_app_dir container_dir
+```
