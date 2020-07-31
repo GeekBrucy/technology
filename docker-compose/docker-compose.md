@@ -78,3 +78,14 @@ services:
 FROM some_docker_image:tag
 COPY local_app_dir container_dir
 ```
+
+# Docker CI, CD
+## Preface
+>Project Deployment  
+>1. Compile the project  
+>2. Upload the compiled file to the server  
+>3. Move the compiled file to web server dir  
+>4. Convert the compiled file and web server into an image via Dockerfile, and use docker-compose to run the container  
+
+## CI (continuous integration)
+### 1. Build Gitlab Server
