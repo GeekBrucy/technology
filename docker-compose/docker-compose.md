@@ -89,3 +89,41 @@ COPY local_app_dir container_dir
 
 ## CI (continuous integration)
 ### 1. Build Gitlab Server
+use docker-compose execute the following
+> because gitlab requires port 22, the default ssh port is 22 as well. So 
+> the default ssh needs to be changed to some other port
+```sh
+# open sshd_config
+vi /etc/ssh/sshd_config
+# find PORT setting and change it to something else
+
+# restart ssh
+systemctl restart sshd
+```
+
+```yml
+version: '3.4'
+services:
+ gitlab:
+  image: 'gitlab/gitlab-ce:latest'
+  container_name: "gitlab"
+  restart: always
+  privileged: true
+  hostname: 'gitlab'
+  environment:
+   TZ: 'Australia/Canberra'
+   GITLAB_OMNIBUS_CONFIG: |
+    external_url 'http://192.168.199.110'
+    gitlab_rails['time_zone'] = 'Australia/Canberra'
+    gitlab_rails['smtp_enable'] = true
+    gitlab_rails['gitlab_shell_ssh_port'] = 22
+  ports:
+   - '80:80'
+   - '443:443'
+   - '22:22'
+  volumes:
+   - /opt/docker_gitlab/config:/etc/gitlab
+   - /opt/docker_gitlab/data:/var/opt/gitlab
+   - /opt/docker_gitlab/logs:/var/log/gitlab
+```
+### 2. Build Gitlab-Runner
