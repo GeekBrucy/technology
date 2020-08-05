@@ -163,8 +163,8 @@ docker exec -it gitlab-runner gitlab-runner register
 
 ### 3. Integrate project for testing
 #### 3.1 Create project
-#### 3.2 .gitlab-ci.yml
-It can be simple as the following
+#### 3.2 .gitlab-ci.yml (Running in gitlab-runner)
+Simple one for testing
 ```yml
 stages:
   - test
@@ -174,5 +174,37 @@ test:
     - echo first test ci
 ```
 
+Full Version
+##### 3.2.1 Prepare a Dockerfile
+```sh
+# pull down the needed image
+# copy the packaged project to web host folder
+```
+##### 3.2.2 Prepare a docker-compose.yml
+```yml
+version: "3.5"
+services:
+  testci:
+    build: docker
+    restart: always
+    container_name: testci
+    ports:
+      - 8080:8080
+```
+```yml
+stages:
+  - test
+test:
+  stage: test
+  script:
+    - echo first test ci
+    # can be a package command
+    # copy the packaged project to the folder contains Dockerfile
+    # use docker-compose to put down the container (just in case)
+    # use docker-compose stand up the container
+    - docker rmi $(docker images -qf dangling=true)# remove the images with no name and tag
+
+
+```
 #### 3.3 push the project to gitlab
 #### 3.4 view gitlab-ci.yml in gitlab

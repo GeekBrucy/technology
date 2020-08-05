@@ -32,6 +32,10 @@ or
 ```
 docker rmi IMAGE_ID
 ```
+remove all the image with name none
+```
+docker rmi $(docker images -qf dangling=true)
+```
 
 # Docker delete container
 
