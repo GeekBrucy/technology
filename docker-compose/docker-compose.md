@@ -127,3 +127,52 @@ services:
    - /opt/docker_gitlab/logs:/var/log/gitlab
 ```
 ### 2. Build Gitlab-Runner
+```yml
+version: '3.4'
+services:
+ gitlab-runner:
+  image: 'gitlab/gitlab-runner:alpine'
+  container_name: "gitlab-runner"
+  restart: always
+  privileged: true
+  depends_on:
+    - gitlab
+  networks:
+    - docker_gitlab_default
+  volumes:
+    - /opt/docker_gitlab-runner:/etc/gitlab-runner
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /bin/docker:/bin/docker
+```
+#### 2.1 run the following for permission
+```sh
+sudo chown root:root /var/run/docker.sock
+```
+#### 2.2 run the following to execute the yml
+```sh
+docker-compose up -d --build
+```
+#### 2.3 run the following for assigning permission to root on gitlab-runner
+```sh
+dockerdocker exec -it gitlab-runner usermod -aG root gitlab-runner
+```
+#### 2.4 register gitlab-runner to gitlab
+```sh
+docker exec -it gitlab-runner gitlab-runner register
+```
+
+### 3. Integrate project for testing
+#### 3.1 Create project
+#### 3.2 .gitlab-ci.yml
+It can be simple as the following
+```yml
+stages:
+  - test
+test:
+  stage: test
+  script:
+    - echo first test ci
+```
+
+#### 3.3 push the project to gitlab
+#### 3.4 view gitlab-ci.yml in gitlab
